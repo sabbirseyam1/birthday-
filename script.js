@@ -1,5 +1,5 @@
-// আপনার সিক্রেট ৪ ডিজিটের পাসকোডটি এখানে দিন (যেমন: 1205)
-const SECRET_PIN = "1205"; 
+// আপনার সিক্রেট ৪ ডিজিটের পাসকোডটি এখানে দিন (যেমন:1908 )
+const SECRET_PIN = "1908"; 
 
 function unlock() {
     const input = document.getElementById("pinInput").value;
