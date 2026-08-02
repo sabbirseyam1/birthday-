@@ -1,0 +1,161 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: linear-gradient(135deg, #0d0e15 0%, #261223 100%);
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.main-card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    border-radius: 24px;
+    padding: 30px 20px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+.icon { font-size: 45px; margin-bottom: 10px; }
+h2 { color: #ff5e78; margin-bottom: 12px; }
+h1 { color: #ff4757; font-size: 24px; margin-bottom: 10px; }
+p { color: #e1e1e1; font-size: 15px; line-height: 1.6; }
+
+input {
+    width: 70%;
+    padding: 12px;
+    margin-top: 15px;
+    border-radius: 12px;
+    border: 2px solid #ff4757;
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    letter-spacing: 5px;
+    outline: none;
+}
+
+button {
+    background: linear-gradient(135deg, #ff4757, #ff6b81);
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 18px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.3s;
+    box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
+}
+
+button:hover { transform: translateY(-2px); }
+
+.error-msg {
+    color: #ff6b81;
+    font-weight: bold;
+    margin-top: 12px;
+    display: none;
+}
+
+.hidden { display: none !important; }
+
+.gallery {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.gallery img {
+    width: 31%;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 2px solid #ff6b81;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.envelope {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 16px;
+    border: 2px dashed #ff6b81;
+    cursor: pointer;
+}
+
+.envelope-icon { font-size: 40px; }
+
+.letter-box {
+    background: #ffffff;
+    color: #2f3542;
+    padding: 25px;
+    border-radius: 16px;
+    text-align: left;
+    margin-top: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.letter-box h2 { color: #ff4757; }
+.signature { text-align: right; font-weight: bold; margin-top: 15px; color: #ff4757; }
+
+.cake {
+    margin: 40px auto 20px;
+    width: 120px;
+    height: 90px;
+    position: relative;
+    cursor: pointer;
+}
+
+.top-layer {
+    width: 120px;
+    height: 40px;
+    background: #ff6b81;
+    border-radius: 10px 10px 0 0;
+    position: absolute;
+    bottom: 40px;
+}
+
+.bottom-layer {
+    width: 140px;
+    height: 40px;
+    background: #ff4757;
+    border-radius: 10px 10px 15px 15px;
+    position: absolute;
+    bottom: 0;
+    left: -10px;
+}
+
+.candle {
+    width: 12px;
+    height: 30px;
+    background: #fff;
+    position: absolute;
+    top: -10px;
+    left: 54px;
+    border-radius: 3px;
+}
+
+.flame {
+    position: absolute;
+    top: -30px;
+    left: 48px;
+    font-size: 20px;
+    animation: flicker 0.6s infinite alternate;
+}
+
+@keyframes flicker {
+    from { transform: scale(1); opacity: 0.9; }
+    to { transform: scale(1.2); opacity: 1; }
+}

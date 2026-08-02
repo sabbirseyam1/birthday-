@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <title>A Special Surprise For You ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+    <div class="main-card">
+        
+        <!-- STEP 1: LOCK SCREEN -->
+        <div id="lock-screen" class="step">
+            <div class="icon">🔒</div>
+            <h2>Private Access</h2>
+            <p>আমাদের সিক্রেট পিনটি দিয়ে আনলক করো (DDMM):</p>
+            <input type="password" id="pinInput" placeholder="••••" maxlength="4">
+            <button onclick="unlock()">Unlock ❤️</button>
+            <p id="errorMsg" class="error-msg">ভুল পিন! আবার চেষ্টা করো 🥺</p>
+        </div>
+
+        <!-- STEP 2: PHOTO GALLERY & LETTER -->
+        <div id="letter-screen" class="step hidden">
+            
+            <div class="gallery">
+                <img src="pic1.jpg" alt="Our Memory 1">
+                <img src="pic2.jpg" alt="Our Memory 2">
+                <img src="pic3.jpg" alt="Our Memory 3">
+            </div>
+
+            <div class="envelope" onclick="openLetter()">
+                <div class="envelope-icon">📩</div>
+                <p>তোমার জন্য একটা চিঠি আছে! <br><strong>(এখানে ক্লিক করো)</strong></p>
+            </div>
+
+            <div id="letterContent" class="letter-box hidden">
+                <h2>আমার প্রিয় মানুষটি, ❤️</h2>
+                <p>
+                    আমার যাত্রার অংশ হওয়ার জন্য তোমাকে ধন্যবাদ। তোমার উপস্থিতি সাধারণ মুহূর্তগুলোকেও অসাধারণ করে তোলে।<br><br>
+                    সুখী থেকো, এবং সবসময় হাস্যোজ্জ্বল হয়ে থেকো।<br><br>
+                    শুভ জন্মদিন, আমার ভালোবাসা। 🎂✨🤍
+                </p>
+                <div class="signature">— তোমার সেয়াম ❤️</div>
+                <button class="next-btn" onclick="goToCake()">পরের সারপ্রাইজ 🎂</button>
+            </div>
+        </div>
+
+        <!-- STEP 3: CAKE & CELEBRATION -->
+        <div id="cake-screen" class="step hidden">
+            <h1>🎉 Happy Birthday, My Love! 🎂</h1>
+            <p>মোমবাতিতে ক্লিক করে নিভিয়ে দাও এবং উইশ করো!</p>
+
+            <div class="cake" onclick="blowCandle()">
+                <div class="flame" id="flame">🔥</div>
+                <div class="candle"></div>
+                <div class="top-layer"></div>
+                <div class="bottom-layer"></div>
+            </div>
+
+            <div id="wishMsg" class="wish-text hidden">
+                <h2>✨ Make A Wish! ✨</h2>
+                <p>তোমার সব স্বপ্ন সত্যি হোক! ❤️</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
