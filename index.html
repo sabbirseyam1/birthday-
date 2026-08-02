@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday Simi ❤️</title>
     <link rel="stylesheet" href="style.css">
+    <script>
+        function checkPassword() {
+            var password = document.getElementById("passInput").value.toLowerCase().trim();
+            // Passwords allowed: simiseyam, simi+seyam, simisiam, simi+siam
+            if (password === "simiseyam" || password === "simi+seyam" || password === "simisiam" || password === "simi+siam") {
+                document.getElementById("lock-screen").style.display = "none";
+                document.getElementById("main-content").style.display = "block";
+            } else {
+                alert("ভুল পাসওয়ার্ড! আমাদের নাম দুটো একসাথে লেখো ❤️");
+            }
+        }
+    </script>
 </head>
 <body>
 
@@ -17,23 +29,35 @@
         <div class="heart">❤️</div>
     </div>
 
-    <!-- Main Luxury Card -->
-    <div class="card">
+    <!-- Password Lock Screen -->
+    <div id="lock-screen" class="card">
+        <div class="badge">Secret Entry 🔒</div>
+        <h1>Enter Password</h1>
+        <p class="subtitle">আমাদের দুজনের নাম একসাথে লেখো ✨</p>
+        
+        <input type="password" id="passInput" placeholder="Enter password..." style="padding: 12px 20px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: #fff; text-align: center; font-size: 1rem; margin-bottom: 20px; outline: none; width: 80%; max-width: 280px;">
+        <br>
+        <button class="surprise-btn" onclick="checkPassword()">Unlock ❤️</button>
+    </div>
+
+    <!-- Main Content (Initially Hidden) -->
+    <div id="main-content" class="card" style="display: none;">
         <div class="badge">Special Surprise 🎂</div>
         
-        <h1>Happy Birthday,saima sultana Simi! ❤️</h1>
+        <h1>Happy Birthday, Simi! ❤️</h1>
         
         <p class="subtitle">
             শুভ জন্মদিন আমার সবচেয়ে প্রিয় মানুষটি! ✨<br>
-            তোমার জীবনের প্রতিটি দিন যেন ভালোবাসা, আনন্দ আর প্রার্থনায় পরিপূর্ণ থাকে। তুমি আমার জীবনে আসা সেরা উপহার!
+            তোমার জীবনের প্রতিটি দিন যেন ভালোবাসা, আনন্দে পরিপূর্ণ থাকে। তুমি আমার জীবনে আসা সেরা উপহার!
+            শুভ জন্মদিন অলিখিত অর্ধাঙ্গিনী 😘
         </p>
 
         <!-- Interactive Surprise Button -->
-        <button class="surprise-btn" onclick="alert('I Love You So Much, my ILLEGAL WIFE! ❤️✨')">
+        <button class="surprise-btn" onclick="alert('I Love You So Much, Simi! ❤️✨')">
             Click For A Surprise 🎁
         </button>
 
-        <!-- 3D Photo Gallery -->
+        <!-- Photo Gallery Grid -->
         <div class="gallery">
             <div class="photo-card">
                 <img src="1.jpg" alt="Simi Picture 1">
