@@ -8,8 +8,7 @@
     <script>
         function checkPassword() {
             var password = document.getElementById("passInput").value.toLowerCase().trim();
-            // Passwords allowed: simiseyam, simi+seyam, simisiam, simi+siam
-            if (password === "simiseyam" || password === "simi+seyam" || password === "simisiam" || password === "simi+siam") {
+            if (password === "simiseyam" || password === "simi+seyam" || password === "simisiam" || password === "simi+siam" || password === "simi" || password === "sami") {
                 document.getElementById("lock-screen").style.display = "none";
                 document.getElementById("main-content").style.display = "block";
             } else {
@@ -48,8 +47,7 @@
         
         <p class="subtitle">
             শুভ জন্মদিন আমার সবচেয়ে প্রিয় মানুষটি! ✨<br>
-            তোমার জীবনের প্রতিটি দিন যেন ভালোবাসা, আনন্দে পরিপূর্ণ থাকে। তুমি আমার জীবনে আসা সেরা উপহার!
-            শুভ জন্মদিন অলিখিত অর্ধাঙ্গিনী 😘
+            তোমার জীবনের প্রতিটি দিন যেন ভালোবাসা, আনন্দ আর প্রার্থনায় পরিপূর্ণ থাকে। তুমি আমার জীবনে আসা সেরা উপহার!
         </p>
 
         <!-- Interactive Surprise Button -->
@@ -60,21 +58,21 @@
         <!-- Photo Gallery Grid -->
         <div class="gallery">
             <div class="photo-card">
-                <img src="1.jpg" alt="Sami Picture 1">
+                <img src="1.JPG" onerror="this.src='1.jpg'" alt="Simi Picture 1">
                 <div class="overlay"><span>My Favorite ❤️</span></div>
             </div>
             <div class="photo-card">
-                <img src="2.jpg" alt="Sami Picture 2">
+                <img src="2.JPG" onerror="this.src='2.jpg'" alt="Simi Picture 2">
                 <div class="overlay"><span>Precious Moments ✨</span></div>
             </div>
             <div class="photo-card">
-                <img src="3.jpg" alt="Sami Picture 3">
+                <img src="3.JPG" onerror="this.src='3.jpg'" alt="Simi Picture 3">
                 <div class="overlay"><span>Always Smile 🌸</span></div>
             </div>
         </div>
 
         <div class="footer-text">
-            Crafted with ❤️ for Sami
+            Crafted with ❤️ for Simi
         </div>
     </div>
 
