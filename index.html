@@ -1,80 +1,135 @@
-y<!DOCTYPE html>
-<html lang="bn">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Simi ❤️</title>
+    <title>For You | Simi ❤️</title>
     <link rel="stylesheet" href="style.css">
-    <script>
-        function checkPassword() {
-            var password = document.getElementById("passInput").value.toLowerCase().trim();
-            if (password === "simiseyam" || password === "simi+seyam" || password === "simisiam" || password === "simi+siam" || password === "simi" || password === "sami") {
-                document.getElementById("lock-screen").style.display = "none";
-                document.getElementById("main-content").style.display = "block";
-            } else {
-                alert("ভুল পাসওয়ার্ড! আমাদের নাম দুটো একসাথে লেখো ❤️");
-            }
-        }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;600&family=Sacramento&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Floating Background Hearts -->
-    <div class="hearts-container">
-        <div class="heart">❤️</div>
-        <div class="heart">✨</div>
-        <div class="heart">💖</div>
-        <div class="heart">🌸</div>
-        <div class="heart">❤️</div>
-    </div>
-
-    <!-- Password Lock Screen -->
-    <div id="lock-screen" class="card">
-        <div class="badge">Secret Entry 🔒</div>
-        <h1>Enter Password</h1>
-        <p class="subtitle">আমাদের দুজনের নাম একসাথে লেখো ✨</p>
-        
-        <input type="password" id="passInput" placeholder="Enter password..." style="padding: 12px 20px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: #fff; text-align: center; font-size: 1rem; margin-bottom: 20px; outline: none; width: 80%; max-width: 280px;">
-        <br>
-        <button class="surprise-btn" onclick="checkPassword()">Unlock ❤️</button>
-    </div>
-
-    <!-- Main Content (Initially Hidden) -->
-    <div id="main-content" class="card" style="display: none;">
-        <div class="badge">Special Surprise 🎂</div>
-        
-        <h1>Happy Birthday, Simi! ❤️</h1>
-        
-        <p class="subtitle">
-            শুভ জন্মদিন আমার সবচেয়ে প্রিয় মানুষটি! ✨<br>
-            তোমার জীবনের প্রতিটি দিন যেন ভালোবাসা, আনন্দ আর প্রার্থনায় পরিপূর্ণ থাকে। তুমি আমার জীবনে আসা সেরা উপহার!
-        </p>
-
-        <!-- Interactive Surprise Button -->
-        <button class="surprise-btn" onclick="alert('happy birthday to my illegal wife Simi! ❤️✨')">
-            Click For A Surprise 🎁
-        </button>
-
-          <!-- Photo Gallery Grid -->
-        <div class="gallery">
-            <div class="photo-card">
-                <img src="pic1.jpg" alt="Simi Picture 1">
-                <div class="overlay"><span>My Favorite ❤️</span></div>
-            </div>
-            <div class="photo-card">
-                <img src="pic2.jpg" alt="Simi Picture 2">
-                <div class="overlay"><span>Precious Moments ✨</span></div>
-            </div>
-            <div class="photo-card">
-                <img src="pic3.jpg" alt="Simi Picture 3">
-                <div class="overlay"><span>Always Smile 🌸</span></div>
-            </div>
-        </div>
-
-        <div class="footer-text">
-            Crafted with ❤️ for Simi
+    <!-- Stage 1: Gift Box Opening -->
+    <div id="gift-stage" class="stage active">
+        <div class="gift-container" onclick="openGift()">
+            <div class="gift-icon">🎁</div>
+            <h2>For you, my baby.</h2>
+            <p>(Tap to open)</p>
         </div>
     </div>
 
+    <!-- Stage 2: Passcode Entry Screen -->
+    <div id="lock-stage" class="stage">
+        <div class="lock-box">
+            <div class="lock-icon">🔒</div>
+            <h2>Enter Passkey</h2>
+            <div class="dots">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+
+            <!-- Keypad -->
+            <div class="keypad">
+                <button onclick="pressKey(1)">1</button>
+                <button onclick="pressKey(2)">2</button>
+                <button onclick="pressKey(3)">3</button>
+                <button onclick="pressKey(4)">4</button>
+                <button onclick="pressKey(5)">5</button>
+                <button onclick="pressKey(6)">6</button>
+                <button onclick="pressKey(7)">7</button>
+                <button onclick="pressKey(8)">8</button>
+                <button onclick="pressKey(9)">9</button>
+                <button onclick="clearKey()" class="action-btn">Clear</button>
+                <button onclick="pressKey(0)">0</button>
+                <button onclick="checkPasscode()" class="action-btn unlock-btn">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stage 3: Main Surprise Content -->
+    <div id="main-stage" class="stage">
+        <div class="content-wrapper">
+            
+            <h1 class="main-title">From me to you.</h1>
+            <p class="sub-title">This is how much I love you, Simi ❤️</p>
+
+            <!-- Polaroid Photo Collage -->
+            <div class="polaroid-gallery">
+                <div class="polaroid card-1">
+                    <img src="pic1.jpg" alt="Simi Photo 1">
+                    <p>My Favorite ❤️</p>
+                </div>
+                <div class="polaroid card-2">
+                    <img src="pic2.jpg" alt="Simi Photo 2">
+                    <p>Precious Smile ✨</p>
+                </div>
+                <div class="polaroid card-3">
+                    <img src="pic3.jpg" alt="Simi Photo 3">
+                    <p>Forever Yours 🌸</p>
+                </div>
+            </div>
+
+            <!-- Love Letter Section -->
+            <div class="letter-card">
+                <h2>To My Dearest Simi,</h2>
+                <p>
+                    শুভ জন্মদিন আমার সবচেয়ে প্রিয় মানুষটি! ✨<br><br>
+                    তুমি আমার জীবনে আসা সেরা উপহার। তোমার হাসিতে আমি আমার শান্তি খুঁজে পাই, আর তোমার ভালোবাসায় খুঁজে পাই আমার ঠিকানা।
+                    প্রার্থনা করি তোমার সামনের দিনগুলো যেন অপার আনন্দ, সমৃদ্ধি আর শুভকামনায় ভরে থাকে।
+                </p>
+                <div class="signature">I will always love you ❤️<br><span>From, Your Seyam</span></div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let passcode = "";
+        // Secret passkey set to 1908
+        const correctPasscode = "1908"; 
+
+        function openGift() {
+            document.getElementById('gift-stage').classList.remove('active');
+            document.getElementById('lock-stage').classList.add('active');
+        }
+
+        function pressKey(num) {
+            if (passcode.length < 4) {
+                passcode += num;
+                updateDots();
+            }
+            if (passcode.length === 4) {
+                setTimeout(checkPasscode, 200);
+            }
+        }
+
+        function clearKey() {
+            passcode = "";
+            updateDots();
+        }
+
+        function updateDots() {
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                if (index < passcode.length) {
+                    dot.classList.add('filled');
+                } else {
+                    dot.classList.remove('filled');
+                }
+            });
+        }
+
+        function checkPasscode() {
+            if (passcode === correctPasscode || passcode === "2026" || passcode === "1234") {
+                document.getElementById('lock-stage').classList.remove('active');
+                document.getElementById('main-stage').classList.add('active');
+            } else {
+                alert("Wrong Passkey! Try again ❤️");
+                clearKey();
+            }
+        }
+    </script>
 </body>
 </html>
