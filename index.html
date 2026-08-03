@@ -4,8 +4,219 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For You | Simi ❤️</title>
-    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;600&family=Sacramento&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f7ebe1;
+            color: #5a3d31;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            padding: 20px 15px;
+        }
+
+        .stage {
+            display: none;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .stage.active {
+            display: block;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        /* Stage 1: Gift Styling */
+        .gift-container {
+            cursor: pointer;
+            background: #fff8f3;
+            padding: 40px 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border: 1px solid #ebd8cb;
+        }
+
+        .gift-icon {
+            font-size: 70px;
+            animation: bounce 2s infinite;
+        }
+
+        .gift-container h2 {
+            font-family: 'Sacramento', cursive;
+            font-size: 2.3rem;
+            color: #a84343;
+            margin-top: 15px;
+        }
+
+        .gift-container p {
+            font-size: 0.9rem;
+            color: #8c6d62;
+        }
+
+        /* Stage 2: Keypad Lock */
+        .lock-box {
+            background: #fff8f3;
+            padding: 25px 20px;
+            border-radius: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border: 1px solid #ebd8cb;
+        }
+
+        .lock-icon {
+            font-size: 35px;
+            margin-bottom: 5px;
+        }
+
+        .dots {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 15px 0 25px 0;
+        }
+
+        .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid #a84343;
+            background: transparent;
+        }
+
+        .dot.filled {
+            background: #a84343;
+        }
+
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            max-width: 250px;
+            margin: 0 auto;
+        }
+
+        .keypad button {
+            padding: 14px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50%;
+            background: #f0dfd5;
+            color: #5a3d31;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .keypad button:active {
+            background: #a84343;
+            color: #fff;
+        }
+
+        .keypad .action-btn {
+            border-radius: 12px;
+            font-size: 0.85rem;
+        }
+
+        /* Stage 3: Polaroid & Content */
+        .main-title {
+            font-family: 'Sacramento', cursive;
+            font-size: 2.8rem;
+            color: #8b2626;
+        }
+
+        .sub-title {
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+            color: #735246;
+        }
+
+        .polaroid-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+            margin-bottom: 25px;
+            width: 100%;
+        }
+
+        .polaroid {
+            background: #ffffff;
+            padding: 12px 12px 18px 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border-radius: 4px;
+            width: 100%;
+            max-width: 310px;
+        }
+
+        .polaroid.card-1 { transform: rotate(-2deg); }
+        .polaroid.card-2 { transform: rotate(2deg); }
+        .polaroid.card-3 { transform: rotate(-1deg); }
+
+        .polaroid img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 2px;
+            display: block;
+        }
+
+        .polaroid p {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.3rem;
+            margin-top: 10px;
+            color: #4a332a;
+        }
+
+        .letter-card {
+            background: #fffaf5;
+            padding: 25px 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: left;
+            border: 1px solid #ebd8cb;
+        }
+
+        .letter-card h2 {
+            font-family: 'Sacramento', cursive;
+            font-size: 2rem;
+            color: #8b2626;
+            margin-bottom: 12px;
+        }
+
+        .letter-card p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #5a3d31;
+        }
+
+        .signature {
+            margin-top: 15px;
+            text-align: right;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.2rem;
+            color: #8b2626;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+    </style>
 </head>
 <body>
 
@@ -87,7 +298,6 @@
 
     <script>
         let passcode = "";
-        // Secret passkey set to 1908
         const correctPasscode = "1908"; 
 
         function openGift() {
