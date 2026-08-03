@@ -340,14 +340,14 @@
         }
     </style>
 </head>
-<body>
+<body onclick="playMusicOnFirstTouch()">
 
-    <audio id="bg-music" loop>
-        <source src="https://assets.mixkit.co/music/preview/mixkit-romantic-sunset-688.mp3" type="audio/mpeg">
+    <audio id="bg-music" loop preload="auto">
+        <source src="https://assets.mixkit.co/music/preview/mixkit-happy-birthday-431.mp3" type="audio/mpeg">
     </audio>
 
-    <button class="music-btn" onclick="toggleMusic()">
-        <span id="music-icon">🎵</span> <span id="music-text">Play Music</span>
+    <button class="music-btn" onclick="toggleMusic(event)">
+        <span id="music-icon">🎶</span> <span id="music-text">Play Song</span>
     </button>
 
     <div id="petals-container"></div>
@@ -440,42 +440,46 @@
         // Passkey Configuration
         let inputPass = "";
         const correctPass = "1908"; 
+        let musicStarted = false;
 
         // Letter message
         const letterMessage = "তুমি আমার জীবনে আসা সেরা উপহার।\n\nতোমার হাসিতে আমি আমার শান্তি খুঁজে পাই, আর তোমার ভালোবাসায় খুঁজে পাই আমার ঠিকানা।\n\nসবসময় এভাবে আমার পাশে থেকো।";
 
-        function goToStage(stageNum) {
-            document.querySelectorAll('.stage').forEach(s => s.classList.remove('active'));
-            document.getElementById(`stage-${stageNum}`).classList.add('active');
-            
-            // Auto play music on gift click
-            if (stageNum === 2) {
+        function playMusicOnFirstTouch() {
+            if (!musicStarted) {
                 const music = document.getElementById("bg-music");
                 music.play().then(() => {
-                    document.getElementById("music-text").innerText = "Pause Music";
+                    document.getElementById("music-text").innerText = "Pause Song";
+                    musicStarted = true;
                 }).catch(() => {});
             }
         }
 
-        function toggleMusic() {
+        function goToStage(stageNum) {
+            document.querySelectorAll('.stage').forEach(s => s.classList.remove('active'));
+            document.getElementById(`stage-${stageNum}`).classList.add('active');
+            playMusicOnFirstTouch();
+        }
+
+        function toggleMusic(e) {
+            e.stopPropagation();
             const music = document.getElementById("bg-music");
-            const icon = document.getElementById("music-icon");
             const text = document.getElementById("music-text");
 
             if (music.paused) {
                 music.play();
-                text.innerText = "Pause Music";
+                text.innerText = "Pause Song";
+                musicStarted = true;
             } else {
                 music.pause();
-                text.innerText = "Play Music";
+                text.innerText = "Play Song";
             }
         }
 
         function triggerSurprise() {
-            // Launch Confetti Burst
             confetti({
-                particleCount: 100,
-                spread: 70,
+                particleCount: 120,
+                spread: 80,
                 origin: { y: 0.6 }
             });
 
