@@ -340,16 +340,18 @@
         }
     </style>
 </head>
-<body onclick="playMusicOnFirstTouch()">
+<body>
 
+    <!-- Reliable Direct Birthday Audio Source -->
     <audio id="bg-music" loop preload="auto">
-        <source src="https://assets.mixkit.co/music/preview/mixkit-happy-birthday-431.mp3" type="audio/mpeg">
+        <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a7392d.mp3?filename=happy-birthday-155461.mp3" type="audio/mpeg">
     </audio>
 
     <button class="music-btn" onclick="toggleMusic(event)">
         <span id="music-icon">🎶</span> <span id="music-text">Play Song</span>
     </button>
 
+    <!-- Floating Background Elements -->
     <div id="petals-container"></div>
     <div class="floating-heart" style="left: 10%; animation-delay: 0s;">❤️</div>
     <div class="floating-heart" style="left: 30%; animation-delay: 2s;">✨</div>
@@ -358,6 +360,7 @@
 
     <div class="container">
 
+        <!-- STAGE 1: GIFT BOX -->
         <div id="stage-1" class="stage active">
             <div class="gift-box" onclick="goToStage(2)">
                 <div class="gift-icon">🎁</div>
@@ -366,6 +369,7 @@
             </div>
         </div>
 
+        <!-- STAGE 2: PASSKEY LOCK -->
         <div id="stage-2" class="stage">
             <div class="lock-card">
                 <div class="badge">Secret Entry 🔒</div>
@@ -395,19 +399,22 @@
             </div>
         </div>
 
+        <!-- STAGE 3: MAIN CONTENT -->
         <div id="stage-3" class="stage">
             <div class="badge">Special Surprise 🎂</div>
             <h1 class="main-head">Happy Birthday, Simi! ❤️</h1>
             
             <p class="main-sub">
                 শুভ জন্মদিন আমার সবচেয়ে প্রিয় মানুষটি! ✨<br>
-                তোমার জীবনের প্রতিটি দিন যেন ভালোবাসা, আনন্দ আর প্রার্থনায় পরিপূর্ণ থাকে। তুমি আমার জীবনে আসা সেরা উপহার!
+                তোমার জীবনের প্রতিটি দিন যেন ভালোবাসা, আনন্দ পরিপূর্ণ থাকে। তুমি আমার জীবনে আসা সেরা উপহার!
             </p>
 
+            <!-- Interactive Surprise Button -->
             <button class="surprise-btn" onclick="triggerSurprise()">
                 Click For A Surprise 🎁
             </button>
 
+            <!-- Polaroid Photos -->
             <div class="polaroid-container">
                 <div class="polaroid p1">
                     <img src="pic1.jpg" alt="Simi 1">
@@ -423,6 +430,7 @@
                 </div>
             </div>
 
+            <!-- Typing Letter -->
             <div class="letter-box">
                 <h2>To My Dearest Simi,</h2>
                 <div id="typed-text" class="letter-text"></div>
@@ -437,39 +445,40 @@
     </div>
 
     <script>
-        // Passkey Configuration
         let inputPass = "";
         const correctPass = "1908"; 
-        let musicStarted = false;
+        const music = document.getElementById("bg-music");
 
-        // Letter message
         const letterMessage = "তুমি আমার জীবনে আসা সেরা উপহার।\n\nতোমার হাসিতে আমি আমার শান্তি খুঁজে পাই, আর তোমার ভালোবাসায় খুঁজে পাই আমার ঠিকানা।\n\nসবসময় এভাবে আমার পাশে থেকো।";
 
-        function playMusicOnFirstTouch() {
-            if (!musicStarted) {
-                const music = document.getElementById("bg-music");
-                music.play().then(() => {
-                    document.getElementById("music-text").innerText = "Pause Song";
-                    musicStarted = true;
-                }).catch(() => {});
-            }
+        function forcePlayMusic() {
+            music.play().then(() => {
+                document.getElementById("music-text").innerText = "Pause Song";
+            }).catch((err) => {
+                console.log("Autoplay blocked, waiting for touch");
+            });
         }
+
+        // Global click/touch listener for browser restriction bypass
+        document.body.addEventListener('click', function() {
+            if (music.paused) {
+                forcePlayMusic();
+            }
+        }, { once: true });
 
         function goToStage(stageNum) {
             document.querySelectorAll('.stage').forEach(s => s.classList.remove('active'));
             document.getElementById(`stage-${stageNum}`).classList.add('active');
-            playMusicOnFirstTouch();
+            forcePlayMusic();
         }
 
         function toggleMusic(e) {
             e.stopPropagation();
-            const music = document.getElementById("bg-music");
             const text = document.getElementById("music-text");
 
             if (music.paused) {
                 music.play();
                 text.innerText = "Pause Song";
-                musicStarted = true;
             } else {
                 music.pause();
                 text.innerText = "Play Song";
@@ -484,7 +493,7 @@
             });
 
             setTimeout(() => {
-                alert('I Love You So Much My Illegal Wife 🫣😘');
+                alert('I Love You So Much My ILLEGAL Wife 🫣😘');
             }, 300);
         }
 
@@ -524,7 +533,6 @@
             }
         }
 
-        // Typewriter Effect
         function startTyping() {
             let i = 0;
             const speed = 40;
@@ -546,7 +554,6 @@
             type();
         }
 
-        // Generate Falling Petals
         function createPetals() {
             const container = document.getElementById('petals-container');
             for (let i = 0; i < 15; i++) {
