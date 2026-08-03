@@ -3,327 +3,441 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For You | Simi ❤️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;600&family=Sacramento&display=swap" rel="stylesheet">
+    <title>Happy Birthday Simi ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Poppins:wght@300;400;600&family=Sacramento&display=swap" rel="stylesheet">
     
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
         }
 
         body {
-            background-color: #f7ebe1;
+            background: #f7ebe1;
             color: #5a3d31;
+            font-family: 'Poppins', sans-serif;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow-x: hidden;
-            padding: 20px 15px;
+            position: relative;
+            padding: 20px 10px;
+        }
+
+        /* Floating Background Hearts & Petals */
+        .petal {
+            position: absolute;
+            background: #f4acb7;
+            border-radius: 150% 0 150% 0;
+            opacity: 0.6;
+            pointer-events: none;
+            animation: animate-petals 10s linear infinite;
+        }
+
+        @keyframes animate-petals {
+            0% { top: -10%; transform: translateX(0) rotate(0deg); }
+            100% { top: 110%; transform: translateX(100px) rotate(360deg); }
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 20px;
+            pointer-events: none;
+            opacity: 0.5;
+            animation: float-up 8s infinite linear;
+        }
+
+        @keyframes float-up {
+            0% { transform: translateY(100vh) scale(0.8); opacity: 0; }
+            50% { opacity: 0.7; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
+
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            z-index: 10;
         }
 
         .stage {
             display: none;
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
-            margin: 0 auto;
         }
 
         .stage.active {
             display: block;
-            animation: fadeIn 0.6s ease-in-out;
+            animation: fadeIn 0.8s ease-in-out;
         }
 
-        /* Stage 1: Gift Styling */
-        .gift-container {
-            cursor: pointer;
+        /* Stage 1: Gift Box Screen */
+        .gift-box {
             background: #fff8f3;
-            padding: 40px 20px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            padding: 50px 25px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(168, 67, 67, 0.1);
             border: 1px solid #ebd8cb;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .gift-box:active {
+            transform: scale(0.98);
         }
 
         .gift-icon {
-            font-size: 70px;
-            animation: bounce 2s infinite;
+            font-size: 80px;
+            animation: bounce 2s infinite ease-in-out;
         }
 
-        .gift-container h2 {
+        .gift-title {
             font-family: 'Sacramento', cursive;
-            font-size: 2.3rem;
-            color: #a84343;
+            font-size: 2.8rem;
+            color: #8b2626;
             margin-top: 15px;
         }
 
-        .gift-container p {
-            font-size: 0.9rem;
-            color: #8c6d62;
+        .gift-sub {
+            font-size: 0.85rem;
+            color: #a07a6e;
+            margin-top: 5px;
+            font-style: italic;
         }
 
-        /* Stage 2: Keypad Lock */
-        .lock-box {
-            background: #fff8f3;
-            padding: 25px 20px;
-            border-radius: 25px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        /* Stage 2: Lock Screen Keypad */
+        .lock-card {
+            background: rgba(255, 248, 243, 0.95);
+            padding: 30px 20px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
             border: 1px solid #ebd8cb;
+            backdrop-filter: blur(5px);
         }
 
-        .lock-icon {
-            font-size: 35px;
-            margin-bottom: 5px;
+        .badge {
+            display: inline-block;
+            background: #a84343;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .lock-card h3 {
+            font-weight: 400;
+            color: #7a5242;
+            margin-bottom: 15px;
         }
 
         .dots {
             display: flex;
             justify-content: center;
-            gap: 12px;
-            margin: 15px 0 25px 0;
+            gap: 15px;
+            margin-bottom: 25px;
         }
 
         .dot {
-            width: 14px;
-            height: 14px;
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
             border: 2px solid #a84343;
             background: transparent;
+            transition: all 0.2s;
         }
 
         .dot.filled {
             background: #a84343;
+            box-shadow: 0 0 8px rgba(168, 67, 67, 0.4);
         }
 
         .keypad {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            max-width: 250px;
+            gap: 15px;
+            max-width: 260px;
             margin: 0 auto;
         }
 
         .keypad button {
-            padding: 14px;
-            font-size: 1.1rem;
-            border: none;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
-            background: #f0dfd5;
+            border: none;
+            background: #f3e3d8;
             color: #5a3d31;
-            cursor: pointer;
+            font-size: 1.2rem;
             font-weight: 600;
+            cursor: pointer;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.2s;
         }
 
         .keypad button:active {
             background: #a84343;
-            color: #fff;
+            color: white;
         }
 
-        .keypad .action-btn {
-            border-radius: 12px;
+        .keypad .btn-text {
+            border-radius: 15px;
+            width: auto;
+            height: auto;
+            padding: 10px;
             font-size: 0.85rem;
         }
 
-        /* Stage 3: Polaroid & Content */
-        .main-title {
+        /* Stage 3: Content Page */
+        .main-head {
             font-family: 'Sacramento', cursive;
-            font-size: 2.8rem;
+            font-size: 3.2rem;
             color: #8b2626;
+            margin-bottom: 5px;
         }
 
-        .sub-title {
-            font-size: 0.9rem;
-            margin-bottom: 25px;
+        .main-sub {
+            font-size: 0.95rem;
             color: #735246;
+            line-height: 1.6;
+            margin-bottom: 25px;
         }
 
-        .polaroid-gallery {
+        /* Surprise Button */
+        .surprise-btn {
+            background: linear-gradient(135deg, #a84343, #d96b6b);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(168, 67, 67, 0.25);
+            margin-bottom: 30px;
+            transition: transform 0.2s;
+        }
+
+        .surprise-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Polaroid Photos */
+        .polaroid-container {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
             align-items: center;
-            margin-bottom: 25px;
-            width: 100%;
+            margin-bottom: 35px;
         }
 
         .polaroid {
             background: #ffffff;
-            padding: 12px 12px 18px 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            padding: 12px 12px 20px 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             border-radius: 4px;
             width: 100%;
-            max-width: 310px;
+            max-width: 320px;
+            transition: transform 0.3s;
+            position: relative;
         }
 
-        .polaroid.card-1 { transform: rotate(-2deg); }
-        .polaroid.card-2 { transform: rotate(2deg); }
-        .polaroid.card-3 { transform: rotate(-1deg); }
+        .polaroid:hover {
+            transform: scale(1.02) rotate(0deg) !important;
+        }
+
+        .polaroid.p1 { transform: rotate(-3deg); }
+        .polaroid.p2 { transform: rotate(2.5deg); }
+        .polaroid.p3 { transform: rotate(-1.5deg); }
 
         .polaroid img {
             width: 100%;
-            height: 240px;
+            height: 260px;
             object-fit: cover;
             border-radius: 2px;
-            display: block;
         }
 
         .polaroid p {
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.3rem;
+            font-family: 'Caveat', cursive;
+            font-size: 1.6rem;
             margin-top: 10px;
             color: #4a332a;
         }
 
-        .letter-card {
+        /* Letter Box */
+        .letter-box {
             background: #fffaf5;
-            padding: 25px 20px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            text-align: left;
+            padding: 30px 20px;
+            border-radius: 20px;
             border: 1px solid #ebd8cb;
+            text-align: left;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+            margin-bottom: 25px;
         }
 
-        .letter-card h2 {
+        .letter-box h2 {
             font-family: 'Sacramento', cursive;
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: #8b2626;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
 
-        .letter-card p {
-            font-size: 0.9rem;
-            line-height: 1.6;
+        .letter-text {
+            font-size: 0.95rem;
+            line-height: 1.7;
             color: #5a3d31;
+            min-height: 100px;
         }
 
-        .signature {
-            margin-top: 15px;
+        .sign {
             text-align: right;
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.2rem;
+            font-family: 'Caveat', cursive;
+            font-size: 1.5rem;
             color: #8b2626;
+            margin-top: 20px;
+        }
+
+        .footer-text {
+            font-size: 0.85rem;
+            color: #8c6d62;
+            margin-top: 15px;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
+            50% { transform: translateY(-10px); }
         }
     </style>
 </head>
 <body>
 
-    <!-- Stage 1: Gift Box Opening -->
-    <div id="gift-stage" class="stage active">
-        <div class="gift-container" onclick="openGift()">
-            <div class="gift-icon">🎁</div>
-            <h2>For you, my baby.</h2>
-            <p>(Tap to open)</p>
-        </div>
-    </div>
+    <div id="petals-container"></div>
+    <div class="floating-heart" style="left: 10%; animation-delay: 0s;">❤️</div>
+    <div class="floating-heart" style="left: 30%; animation-delay: 2s;">✨</div>
+    <div class="floating-heart" style="left: 65%; animation-delay: 4s;">💖</div>
+    <div class="floating-heart" style="left: 85%; animation-delay: 1s;">🌸</div>
 
-    <!-- Stage 2: Passcode Entry Screen -->
-    <div id="lock-stage" class="stage">
-        <div class="lock-box">
-            <div class="lock-icon">🔒</div>
-            <h2>Enter Passkey</h2>
-            <div class="dots">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-            </div>
+    <div class="container">
 
-            <!-- Keypad -->
-            <div class="keypad">
-                <button onclick="pressKey(1)">1</button>
-                <button onclick="pressKey(2)">2</button>
-                <button onclick="pressKey(3)">3</button>
-                <button onclick="pressKey(4)">4</button>
-                <button onclick="pressKey(5)">5</button>
-                <button onclick="pressKey(6)">6</button>
-                <button onclick="pressKey(7)">7</button>
-                <button onclick="pressKey(8)">8</button>
-                <button onclick="pressKey(9)">9</button>
-                <button onclick="clearKey()" class="action-btn">Clear</button>
-                <button onclick="pressKey(0)">0</button>
-                <button onclick="checkPasscode()" class="action-btn unlock-btn">OK</button>
+        <div id="stage-1" class="stage active">
+            <div class="gift-box" onclick="goToStage(2)">
+                <div class="gift-icon">🎁</div>
+                <h1 class="gift-title">For you, my baby.</h1>
+                <p class="gift-sub">(Tap to open your secret surprise)</p>
             </div>
         </div>
-    </div>
 
-    <!-- Stage 3: Main Surprise Content -->
-    <div id="main-stage" class="stage">
-        <div class="content-wrapper">
+        <div id="stage-2" class="stage">
+            <div class="lock-card">
+                <div class="badge">Secret Entry 🔒</div>
+                <h3>Enter Passkey</h3>
+                
+                <div class="dots">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+
+                <div class="keypad">
+                    <button onclick="press(1)">1</button>
+                    <button onclick="press(2)">2</button>
+                    <button onclick="press(3)">3</button>
+                    <button onclick="press(4)">4</button>
+                    <button onclick="press(5)">5</button>
+                    <button onclick="press(6)">6</button>
+                    <button onclick="press(7)">7</button>
+                    <button onclick="press(8)">8</button>
+                    <button onclick="press(9)">9</button>
+                    <button onclick="resetPass()" class="btn-text">Clear</button>
+                    <button onclick="press(0)">0</button>
+                    <button onclick="checkPass()" class="btn-text">OK</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="stage-3" class="stage">
+            <div class="badge">Special Surprise 🎂</div>
+            <h1 class="main-head">Happy Birthday, Simi! ❤️</h1>
             
-            <h1 class="main-title">From me to you.</h1>
-            <p class="sub-title">This is how much I love you, Simi ❤️</p>
+            <p class="main-sub">
+                শুভ জন্মদিন আমার সবচেয়ে প্রিয় মানুষটি! ✨<br>
+                তোমার জীবনের প্রতিটি দিন যেন ভালোবাসা, আনন্দ আর প্রার্থনায় পরিপূর্ণ থাকে। তুমি আমার জীবনে আসা সেরা উপহার!
+            </p>
 
-            <!-- Polaroid Photo Collage -->
-            <div class="polaroid-gallery">
-                <div class="polaroid card-1">
-                    <img src="pic1.jpg" alt="Simi Photo 1">
+            <button class="surprise-btn" onclick="alert('I Love You So Much, Simi! ❤️✨')">
+                Click For A Surprise 🎁
+            </button>
+
+            <div class="polaroid-container">
+                <div class="polaroid p1">
+                    <img src="pic1.jpg" alt="Simi 1">
                     <p>My Favorite ❤️</p>
                 </div>
-                <div class="polaroid card-2">
-                    <img src="pic2.jpg" alt="Simi Photo 2">
-                    <p>Precious Smile ✨</p>
+                <div class="polaroid p2">
+                    <img src="pic2.jpg" alt="Simi 2">
+                    <p>Precious Moments ✨</p>
                 </div>
-                <div class="polaroid card-3">
-                    <img src="pic3.jpg" alt="Simi Photo 3">
-                    <p>Forever Yours 🌸</p>
+                <div class="polaroid p3">
+                    <img src="pic3.jpg" alt="Simi 3">
+                    <p>Always Smile 🌸</p>
                 </div>
             </div>
 
-            <!-- Love Letter Section -->
-            <div class="letter-card">
+            <div class="letter-box">
                 <h2>To My Dearest Simi,</h2>
-                <p>
-                    শুভ জন্মদিন আমার সবচেয়ে প্রিয় মানুষটি! ✨<br><br>
-                    তুমি আমার জীবনে আসা সেরা উপহার। তোমার হাসিতে আমি আমার শান্তি খুঁজে পাই, আর তোমার ভালোবাসায় খুঁজে পাই আমার ঠিকানা।
-                    প্রার্থনা করি তোমার সামনের দিনগুলো যেন অপার আনন্দ, সমৃদ্ধি আর শুভকামনায় ভরে থাকে।
-                </p>
-                <div class="signature">I will always love you ❤️<br><span>From, Your Seyam</span></div>
+                <div id="typed-text" class="letter-text"></div>
+                <div class="sign">Forever & Always,<br>Your Seyam ❤️</div>
             </div>
 
+            <div class="footer-text">
+                Crafted with ❤️ for Simi
+            </div>
         </div>
+
     </div>
 
     <script>
-        let passcode = "";
-        const correctPasscode = "1908"; 
+        // Passkey Configuration
+        let inputPass = "";
+        const correctPass = "1908"; 
 
-        function openGift() {
-            document.getElementById('gift-stage').classList.remove('active');
-            document.getElementById('lock-stage').classList.add('active');
+        // Letter message
+        const letterMessage = "তুমি আমার জীবনে আসা সেরা উপহার। তোমার হাসিতে আমি আমার শান্তি খুঁজে পাই, আর তোমার ভালোবাসায় খুঁজে পাই আমার ঠিকানা। সবসময় এভাবে আমার পাশে থেকো।";
+
+        function goToStage(stageNum) {
+            document.querySelectorAll('.stage').forEach(s => s.classList.remove('active'));
+            document.getElementById(`stage-${stageNum}`).classList.add('active');
         }
 
-        function pressKey(num) {
-            if (passcode.length < 4) {
-                passcode += num;
+        function press(num) {
+            if (inputPass.length < 4) {
+                inputPass += num;
                 updateDots();
             }
-            if (passcode.length === 4) {
-                setTimeout(checkPasscode, 200);
+            if (inputPass.length === 4) {
+                setTimeout(checkPass, 200);
             }
         }
 
-        function clearKey() {
-            passcode = "";
+        function resetPass() {
+            inputPass = "";
             updateDots();
         }
 
         function updateDots() {
             const dots = document.querySelectorAll('.dot');
             dots.forEach((dot, index) => {
-                if (index < passcode.length) {
+                if (index < inputPass.length) {
                     dot.classList.add('filled');
                 } else {
                     dot.classList.remove('filled');
@@ -331,15 +445,48 @@
             });
         }
 
-        function checkPasscode() {
-            if (passcode === correctPasscode || passcode === "2026" || passcode === "1234") {
-                document.getElementById('lock-stage').classList.remove('active');
-                document.getElementById('main-stage').classList.add('active');
+        function checkPass() {
+            if (inputPass === correctPass || inputPass === "2026" || inputPass === "1234") {
+                goToStage(3);
+                startTyping();
             } else {
                 alert("Wrong Passkey! Try again ❤️");
-                clearKey();
+                resetPass();
             }
         }
+
+        // Typewriter Effect
+        function startTyping() {
+            let i = 0;
+            const speed = 40;
+            const target = document.getElementById("typed-text");
+            target.innerText = "";
+            
+            function type() {
+                if (i < letterMessage.length) {
+                    target.innerText += letterMessage.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Generate Falling Petals
+        function createPetals() {
+            const container = document.getElementById('petals-container');
+            for (let i = 0; i < 15; i++) {
+                const petal = document.createElement('div');
+                petal.classList.add('petal');
+                petal.style.left = Math.random() * 100 + 'vw';
+                petal.style.width = Math.random() * 12 + 8 + 'px';
+                petal.style.height = Math.random() * 12 + 8 + 'px';
+                petal.style.animationDuration = Math.random() * 5 + 5 + 's';
+                petal.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(petal);
+            }
+        }
+        createPetals();
     </script>
 </body>
 </html>
