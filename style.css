@@ -1,101 +1,208 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
-    background: radial-gradient(circle at top left, #2c0b30, #0f051d, #05010a);
-    color: #ffffff;
-    font-family: 'Poppins', sans-serif;
+    background-color: #f7ebe1;
+    color: #5a3d31;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 30px 15px;
     overflow-x: hidden;
 }
 
-/* Luxury Glass Card */
-.card {
-    background: rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 215, 0, 0.2);
-    border-radius: 28px;
-    padding: 45px 25px;
-    max-width: 750px;
+.stage {
+    display: none;
     width: 100%;
+    max-width: 500px;
+    padding: 20px;
     text-align: center;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 105, 180, 0.15);
-    animation: slideUp 1.2s ease-out;
 }
 
-/* Royal Title */
-h1 {
-    font-family: 'Dancing Script', cursive;
-    font-size: 3.8rem;
-    background: linear-gradient(45deg, #ffd700, #ff758c, #ff7eb3);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 15px;
-    text-shadow: 0 5px 15px rgba(255, 117, 140, 0.3);
-}
-
-.subtitle {
-    font-size: 1.15rem;
-    color: #e2d9f3;
-    line-height: 1.8;
-    margin-bottom: 35px;
-    font-weight: 300;
-    letter-spacing: 0.5px;
-}
-
-/* Romantic Photo Frame Grid */
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 22px;
-    margin-top: 25px;
-}
-
-.photo-card {
-    position: relative;
-    border-radius: 20px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-.photo-card img {
-    width: 100%;
-    height: 260px;
-    object-fit: cover;
+.stage.active {
     display: block;
-    transition: transform 0.5s ease;
+    animation: fadeIn 0.8s ease-in-out;
 }
 
-.photo-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 15px 35px rgba(255, 117, 140, 0.4);
-    border-color: rgba(255, 117, 140, 0.6);
+/* Stage 1: Gift Styling */
+.gift-container {
+    cursor: pointer;
+    background: #fff8f3;
+    padding: 40px 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
 }
 
-.photo-card:hover img {
-    transform: scale(1.08);
+.gift-icon {
+    font-size: 80px;
+    animation: bounce 2s infinite;
 }
 
-/* Floating Animation */
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(40px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.gift-container h2 {
+    font-family: 'Sacramento', cursive;
+    font-size: 2.5rem;
+    color: #a84343;
+    margin-top: 15px;
+}
+
+.gift-container p {
+    font-size: 0.9rem;
+    color: #8c6d62;
+}
+
+/* Stage 2: Passcode Keypad */
+.lock-box {
+    background: #fff8f3;
+    padding: 30px 20px;
+    border-radius: 25px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.lock-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 20px 0 30px 0;
+}
+
+.dot {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 2px solid #a84343;
+    background: transparent;
+}
+
+.dot.filled {
+    background: #a84343;
+}
+
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    max-width: 280px;
+    margin: 0 auto;
+}
+
+.keypad button {
+    padding: 15px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50%;
+    background: #f0dfd5;
+    color: #5a3d31;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.keypad button:active {
+    background: #a84343;
+    color: #fff;
+}
+
+.keypad .action-btn {
+    border-radius: 15px;
+    font-size: 0.9rem;
+}
+
+/* Stage 3: Polaroid Collage & Letter */
+.main-title {
+    font-family: 'Sacramento', cursive;
+    font-size: 3rem;
+    color: #8b2626;
+}
+
+.sub-title {
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+    color: #735246;
+}
+
+.polaroid-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.polaroid {
+    background: #ffffff;
+    padding: 12px 12px 20px 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    border-radius: 4px;
+    width: 85%;
+    transform: rotate(-2deg);
+}
+
+.polaroid.card-2 {
+    transform: rotate(3deg);
+}
+
+.polaroid.card-3 {
+    transform: rotate(-1deg);
+}
+
+.polaroid img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 2px;
+}
+
+.polaroid p {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.4rem;
+    margin-top: 10px;
+    color: #4a332a;
+}
+
+.letter-card {
+    background: #fffaf5;
+    padding: 30px 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    text-align: left;
+    border: 1px solid #ebd8cb;
+}
+
+.letter-card h2 {
+    font-family: 'Sacramento', cursive;
+    font-size: 2.2rem;
+    color: #8b2626;
+    margin-bottom: 15px;
+}
+
+.letter-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #5a3d31;
+}
+
+.signature {
+    margin-top: 20px;
+    text-align: right;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.3rem;
+    color: #8b2626;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
